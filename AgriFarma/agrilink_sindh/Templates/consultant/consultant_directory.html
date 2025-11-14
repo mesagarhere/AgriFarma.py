@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultant Directory</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Approved Consultants</h2>
+
+    {% if consultants %}
+        <div class="row">
+            {% for c in consultants %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm p-3">
+                        <h4>{{ c.user.name }}</h4>
+                        <span class="badge bg-success mb-2">Approved</span>
+
+                        <p><strong>Category:</strong> {{ c.category }}</p>
+                        <p><strong>Expertise:</strong> {{ c.expertise }}</p>
+                        <p><strong>Contact:</strong> {{ c.contact }}</p>
+
+                        <a href="{{ url_for('consultant.view_profile', consultant_id=c.id) }}"
+                           class="btn btn-primary w-100 mt-2">
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No consultants approved yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

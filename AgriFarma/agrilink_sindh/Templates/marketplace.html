@@ -1,0 +1,11 @@
+<h2>Marketplace</h2>
+
+{% for p in products %}
+<div>
+    <h3>{{ p.name }}</h3>
+    <p>Price: {{ p.price }}</p>
+    <p>Qty: {{ p.quantity }}</p>
+    <a href="/cart/add/{{ p.id }}">Add to Cart</a>
+</div>
+<hr>
+{% endfor %}

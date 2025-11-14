@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h2>{{ product.name }}</h2>
+  <p><strong>Price:</strong> Rs {{ product.price }}</p>
+  <p><strong>Category:</strong> {{ product.category }}</p>
+  <p>{{ product.description }}</p>
+  <p><strong>Available:</strong> {{ product.quantity }}</p>
+
+  {% if current_user.is_authenticated %}
+  <form action="{{ url_for('shop.add_to_cart', pid=product.id) }}" method="POST">
+    <input type="number" name="quantity" value="1" min="1" max="{{ product.quantity }}">
+    <button class="btn btn-success">Add to Cart</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
